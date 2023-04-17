@@ -1,3 +1,7 @@
+//管道操作
+//npm install mongoose@6.10.0
+//运行app.js ： node app.js
+
 /*
 db.order.aggregate([
     {
@@ -27,7 +31,7 @@ var mongoose = require("mongoose");
 
 //第一种实现方式
 /*
-    OrderItemModel.find({"_id":"5b743da92c327f8d1b360546"},function(err,docs){
+    OrderItemModel.find({"_id":"6437c9a1016218fabb95c700"},function(err,docs){
 
         // console.log(docs);
 
@@ -52,7 +56,7 @@ var mongoose = require("mongoose");
 //第二种方式
 
 //mongoose中获取ObjectId           mongoose.Types.ObjectId
-
+//order_item表和order的关联
 OrderItemModel.aggregate(
   [
     {
@@ -64,8 +68,10 @@ OrderItemModel.aggregate(
       },
     },
     {
-      $match: { _id: mongoose.Types.ObjectId("5b743da92c327f8d1b360546") },
+      $match: { _id: mongoose.Types.ObjectId("6437c9a1016218fabb95c700") }, //mongoose.Types.ObjectId 获取objectid（var mongoose = require("mongoose");）
     },
+
+    //{$match:{"all_price":{$gte:90}}}
   ],
   function (err, docs) {
     if (err) {
